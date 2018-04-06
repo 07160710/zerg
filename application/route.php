@@ -9,7 +9,8 @@
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
 
-return [
+   //路由设置
+/*return [
     '__pattern__' => [
         'name' => '\w+',
     ],
@@ -18,4 +19,12 @@ return [
         ':name' => ['index/hello', ['method' => 'post']],
     ],
 
-];
+];*/
+use think\Route;
+//Route::rule('路由表达式','理由地址','请求类型','路由参数（数组）','变量规则(数组)');
+//Route::rule('hello','sample/Test/hello','GET',['https'=>false]);
+//Route::rule('hello','sample/Test/hello','GET|POST',['https'=>false]);
+
+Route::post('hello/:id','sample/Test/hello');
+//Route::post();
+//sRoute::any();

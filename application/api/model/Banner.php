@@ -15,6 +15,7 @@ class Banner
 {
     public static function getBannerByID($id){
         //TODO:根据Banner ID号 获取Banner信息
+        /*
         try{
             1 / 0;
         }catch (Exception $ex){
@@ -22,5 +23,7 @@ class Banner
             throw $ex;
         }
         return 'this is banner info';
+        */
+        return null;
     }
 }

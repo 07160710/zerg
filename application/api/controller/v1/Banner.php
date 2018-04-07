@@ -9,13 +9,20 @@
 namespace app\api\controller\v1;
 
 use app\api\validate\IDMustBePositiveInt;
-use think\Validate;
+
+use app\api\model\Banner as BannerModel;
+use think\Exception;
+
 class Banner
 {
     //获取banner的id的指定信息
     //$id 为Banner的id号
     public function getBanner($id){
         (new IDMustBePositiveInt())->goCheck();
+
+        $banner = BannerModel::getBannerByID($id);
+
+        return $banner;
     }
 
 }

@@ -15,19 +15,7 @@ class Banner
     //获取banner的id的指定信息
     //$id 为Banner的id号
     public function getBanner($id){
-        $data = [
-            'id' => $id
-        ];
-//        $validate = new Validate([
-//            'id' => ''
-//        ]);
-        $validate = new IDMustBePositiveInt();
-        $result = $validate->batch()->check($data);
-        if($result){
-
-        }else{
-
-        }
+        (new IDMustBePositiveInt())->goCheck();
     }
 
 }

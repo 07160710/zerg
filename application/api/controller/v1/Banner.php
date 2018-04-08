@@ -23,10 +23,9 @@ class Banner
 
         $banner = BannerModel::getBannerByID($id);
         if(!$banner){
-            //throw new BannerMissException();
-            throw new Exception('内部错误');
+            throw new BannerMissException();
         }
-        return $banner;
+        return json($banner);
     }
 
 }

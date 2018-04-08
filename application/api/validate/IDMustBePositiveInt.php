@@ -12,8 +12,7 @@ use think\Validate;
 class IDMustBePositiveInt extends BaseValidate
 {
     protected $rule = [
-        'id' => 'require|isPositiveInteger',
-        'num' => 'in:1,2,3'
+        'id' => 'require|isPositiveInteger'
     ];
     protected function isPositiveInteger( $value, $rule = '', $data = '', $field = ''){
         if(is_numeric($value) && is_int($value + 0) && ($value + 0) > 0){

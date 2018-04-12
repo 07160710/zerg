@@ -3,13 +3,13 @@
  * Created by PhpStorm.
  * User: Administrator
  * Date: 2018/4/12
- * Time: 20:05
+ * Time: 21:28
  */
 
-namespace app\api\validate;
+namespace app\lib\exception;
 
 
-class ThemeException extends BaseValidate
+class ThemeException extends BaseException
 {
     public $code = 404;
     public $msg = '指定主题不存在，请检查主题ID';

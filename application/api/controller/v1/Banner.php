@@ -12,7 +12,6 @@ use app\api\validate\IDMustBePositiveInt;
 
 use app\api\model\Banner as BannerModel;
 use app\lib\exception\BannerMissException;
-use think\Exception;
 
 class Banner
 {
@@ -22,8 +21,8 @@ class Banner
         (new IDMustBePositiveInt())->goCheck();
 
 //        $banner = BannerModel::get($id);
-        $banner = BannerModel::with(['items','items.img'])->find($id);
-//        $banner = BannerModel::getBannerByID($id);
+        $banner = BannerModel::getBannerByID($id);
+        $banner->hidden(['update_time','delete_time']);
         if(!$banner){
             throw new BannerMissException();
         }

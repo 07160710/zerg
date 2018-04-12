@@ -22,7 +22,7 @@ class Banner
         (new IDMustBePositiveInt())->goCheck();
 
 //        $banner = BannerModel::get($id);
-        $banner = BannerModel::with('items')->find($id);
+        $banner = BannerModel::with(['items','items.img'])->find($id);
 //        $banner = BannerModel::getBannerByID($id);
         if(!$banner){
             throw new BannerMissException();

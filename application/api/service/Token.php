@@ -10,6 +10,7 @@ namespace app\api\service;
 
 
 use app\lib\enum\ScopeEnum;
+use app\lib\exception\ForbiddenException;
 use app\lib\exception\ParameterException;
 use app\lib\exception\TokenException;
 use think\Cache;
@@ -67,6 +68,53 @@ class Token
         else
         {
             return $uid;
+        }
+    }
+    //验证token是否合法或者是否过期
+    //验证器验证只是token验证的一种方式
+    //另外一种方式是使用行为拦截token，根本不让非法token
+    //进入控制器
+    public static function needPrimaryScope()
+    {
+        $scope = self::getCurrentTokenVar('scope');
+        if ($scope) {
+            if ($scope >= ScopeEnum::User) {
+                return true;
+            }
+            else{
+                throw new ForbiddenException();
+            }
+        } else {
+            throw new TokenException();
+        }
+    }
+
+    // 用户专有权限
+    public static function needExclusiveScope()
+    {
+        $scope = self::getCurrentTokenVar('scope');
+        if ($scope){
+            if ($scope == ScopeEnum::User) {
+                return true;
+            } else {
+                throw new ForbiddenException();
+            }
+        } else {
+            throw new TokenException();
+        }
+    }
+
+    public static function needSuperScope()
+    {
+        $scope = self::getCurrentTokenVar('scope');
+        if ($scope){
+            if ($scope == ScopeEnum::Super) {
+                return true;
+            } else {
+                throw new ForbiddenException();
+            }
+        } else {
+            throw new TokenException();
         }
     }
 
